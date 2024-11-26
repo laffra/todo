@@ -21,7 +21,7 @@ def _get_open_ai_key():
     if not storage.hasOwnProperty("OPENAI_API_KEY"):
         storage.setItem(
             "OPENAI_API_KEY",
-            ltk.window.prompt("Please enter your OPENAI Key")
+            ltk.window.prompt("Please enter your OpenAI Key")
         )
     return storage.getItem("OPENAI_API_KEY")
 
