@@ -4,7 +4,7 @@ The UI for our Todo app
 
 import ltk # see https://github.com/pyscript/ltk
 
-import ai
+import openai
 from todo import model
 from todo import view
 
@@ -33,7 +33,7 @@ def create_ui(app):
     def run_ai(event):
         target = ltk.find(event.target).parent().find(".ltk-input")
         suggest(f"Loading suggestion for {repr(target.val())}...")
-        ai.get_suggestion_and_image(target.val(), suggest, image)
+        openai.get_suggestion_and_image(target.val(), suggest, image)
 
     ltk.find("body").append(
         ltk.VBox(
