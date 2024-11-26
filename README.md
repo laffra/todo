@@ -6,9 +6,9 @@
 - Usage of Reactive LTK for rendering todo items and application summary
 - Layout using `SplitPanel`, `VBox` and `HBox`
 - Styling done in CSS using automatically generated classes for model elements.
-- Retrieval from OpenAI for suggestions and images for to-do items.
-- The app has 70 lines of Python code (removing blank lines and comments).
-- OpenAI helper functions, with caching, measure 70 lines as well.
+- Retrieval from `OpenAI` for suggestions and images for to-do items.
+- The app only has 70 lines of Python code when blank lines and comments are removed.
+- OpenAI helper functions, including caching support, measure 70 lines as well.
 
 ## Sample Screenshot
 
