@@ -32,6 +32,9 @@ def create_ui(app):
 
     def run_ai(event):
         target = ltk.find(event.target).parent().find(".ltk-input")
+        get_suggestion_and_image(target)
+    
+    def get_suggestion_and_image(target):
         suggest(f"Loading suggestion for {repr(target.val())}...")
         openai.get_suggestion_and_image(target.val(), suggest, image)
 
@@ -59,11 +62,13 @@ def create_ui(app):
         .on("change", run_ai)
         .on("focusin", run_ai)
     )
+
     for item in model.TodoModel.load():
         if item.note:
             view.create(item)
+
     update_summary()
-    ltk.find(".ltk-model-todomodel-note").eq(0).focus()
+    get_suggestion_and_image(ltk.find(".ltk-model-todomodel-note").eq(0))
 
 
 create_ui(TodoApp())
