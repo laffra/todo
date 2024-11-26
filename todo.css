@@ -1,0 +1,69 @@
+.main {
+    padding: 4px;
+    height: 95vh;
+}
+
+.todos {
+    border: 1px solid rgb(128, 128, 128);
+    padding: 4px;
+    height: 100%;
+    margin-top: 8px;
+    border-radius: 4px;
+    background-color: rgb(244, 204, 174);
+    overflow-y: scroll;;
+}
+
+.ltk-hbox {
+    padding: 4px 8px 4px 4px;
+    cursor: pointer;
+}
+
+.ltk-model-todoapp-summary {
+    line-height: 26px;
+    font-size: 17px;
+    margin-left: 8px;
+}
+
+.ltk-model-todomodel-note {
+    border: 1px solid gray;
+    padding: 4px;
+    width: 250px;
+    min-height: 14px;
+    margin-right: 8px;
+}
+
+.ltk-model-todomodel-completed {
+    width: 50px;
+    height: 33px;
+}
+
+.main-splitter {
+    height: 100%;
+}
+
+#suggest {
+    height: 100%;
+    padding: 8px;
+    white-space: pre-wrap;
+    margin: 0;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.ltk-button {
+    border: 1px solid #2832371a;
+    border-radius: .25rem;
+    background-color: #69ce88;
+    color: rgb(23 44 44);
+    padding: .75rem .75rem;
+    font-weight: 600;
+    font-size: .875rem;
+    line-height: 0.25rem;
+    min-width: 0px;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#image {
+    width: 100%;
+}
