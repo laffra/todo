@@ -20,4 +20,5 @@ def create(item, focus=False):
     view = TodoView(item)
     if focus:
         view.find(".ltk-input").focus()
+    return view
         
