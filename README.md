@@ -12,4 +12,4 @@
 
 ## Sample Screenshot
 
-<img src="screenshot.png" style="border: 2px solid grey;">
+<img src="assets/screenshot.png" style="border: 2px solid grey;">

@@ -4,9 +4,10 @@ The UI for our Todo app
 
 import ltk # see https://github.com/pyscript/ltk
 
-from lib import openai
 from todo import model
 from todo import view
+
+import openai
 
 
 class TodoApp(ltk.Model):
@@ -18,7 +19,7 @@ def create_ui(app):
     """ Create the main UI. """
 
     def update_summary():
-        app.summary = f"{ltk.find('.todo').length} Todo Items:"
+        app.summary = f"{ltk.find('.todo').length} Todo Tasks:"
 
     def create_todo(_):
         view.create(model.TodoModel(), focus=True)
@@ -28,7 +29,7 @@ def create_ui(app):
         ltk.find("#suggest").text(suggestion.strip())
 
     def image(url):
-        ltk.find("#image").attr("src", url)
+        ltk.find("#image").attr("src", url).toggle()
 
     def run_ai(event):
         target = ltk.find(event.target).parent().find(".ltk-input")
@@ -39,6 +40,7 @@ def create_ui(app):
         if not note:
             return
         suggest(f"Loading suggestion for {note}...")
+        image("")
         openai.get_suggestion_and_image(note, suggest, image)
 
     ltk.find("body").append(
@@ -70,7 +72,9 @@ def create_ui(app):
 
     for item in model.TodoModel.load():
         if item.note:
-            get_suggestion_and_image(view.create(item))
+            view.create(item)
+
+    get_suggestion_and_image(ltk.find(".ltk-model-todomodel-note"))
 
     update_summary()
 

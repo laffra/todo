@@ -37,11 +37,12 @@ def _suggest_with_openai(prompt, suggestion_handler, image_handler):
 
     call_openai(
         "v1/completions",
+        # https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/chatgpt?tabs=python-new
         {
             "model": "gpt-3.5-turbo-instruct",
             "prompt": prompt,
             "max_tokens": 500,
-            "temperature": 0.5
+            "temperature": 0.1
         },
         handle_suggestion,
     )
@@ -52,6 +53,7 @@ def _suggest_with_openai(prompt, suggestion_handler, image_handler):
         image_handler(url)
 
     call_openai(
+        # https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/dall-e?tabs=dalle3
         "v1/images/generations",
         {
             "model": "dall-e-3",
@@ -87,7 +89,7 @@ def get_suggestion_and_image(goal, suggestion_handler, image_handler):
     prompt = f"""
         Suggest how to achieve a todo item: {goal}. 
         Write an advice in a few sentences, not a list of steps.
-        Indicate whether this goal achievable and measurable.
+        Indicate whether this goal is achievable and measurable.
         Summarize alternative goals if applicable.
     """
     if not _load_from_cache(prompt, suggestion_handler, image_handler):
