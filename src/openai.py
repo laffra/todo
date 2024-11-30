@@ -5,6 +5,17 @@ Perform an OpenAI completion.
 import json
 import ltk
 
+OPENAI_KEY_MESSAGE = """
+To make todo item suggestions, we need your OpenAI API Key.
+
+Your key will be stored in localStorage for this page only.
+It will not be uploaded anywhere, nor shared with anyone else.
+You can/should remove your key again in the browser using:
+`Developer Tools` > `Application` > `Local storage`.
+
+Please enter your OpenAI Key below:
+"""
+
 storage = ltk.window.localStorage
 
 def _load_from_cache(prompt, suggestion_handler, image_handler):
@@ -18,10 +29,11 @@ def _load_from_cache(prompt, suggestion_handler, image_handler):
 
 
 def _get_open_ai_key():
-    if not storage.hasOwnProperty("OPENAI_API_KEY"):
+    key = storage.getItem("OPENAI_API_KEY")
+    if not key or key == "null":
         storage.setItem(
             "OPENAI_API_KEY",
-            ltk.window.prompt("Please enter your OpenAI Key")
+            ltk.window.prompt(OPENAI_KEY_MESSAGE)
         )
     return storage.getItem("OPENAI_API_KEY")
 

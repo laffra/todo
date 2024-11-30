@@ -1,5 +1,9 @@
 # Todo App written using PyScript LTK
 
+## Live Demo
+
+Watch the todo app on [GitHub Pages at laffra.github.io/todo/](https://laffra.github.io/todo/).
+
 ## Main Features
 
 - Persistence of to-do items in `window.localStorage`, using `ltk.LocalStorageModel`
