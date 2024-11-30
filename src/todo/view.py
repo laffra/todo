@@ -11,9 +11,17 @@ class TodoView(ltk.HBox):
     classes = ["ltk-hbox", "todo"]
 
     def __init__(self, item: model.TodoModel):
+        @ltk.callback
+        def remove(_event):
+            self.remove()
+            item.remove()
+
         super().__init__(
             ltk.Checkbox(item.completed),
             ltk.Input(item.note),
+            ltk.Label("🗑️")
+                .addClass("delete")
+                .on("click", remove)
         )
 
 

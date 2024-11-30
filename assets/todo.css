@@ -37,6 +37,17 @@
     height: 33px;
 }
 
+.delete {
+    border: 1px solid transparent;
+    margin-top: 8px;
+    cursor: pointer;
+    height: 20px;
+}
+
+.delete:hover {
+    border: 1px solid gray;
+}
+
 .main-splitter {
     height: 100%;
 }

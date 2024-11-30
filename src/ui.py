@@ -36,10 +36,10 @@ def create_ui(app):
         get_suggestion_and_image(target)
 
     def get_suggestion_and_image(target):
-        note = repr(target.val())
-        if not note:
+        note = target.val()
+        if not isinstance(note, str):
             return
-        suggest(f"Loading suggestion for {note}...")
+        suggest(f"Loading suggestion for {repr(note)}...")
         image("")
         openai.get_suggestion_and_image(note, suggest, image)
 
