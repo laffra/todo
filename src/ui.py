@@ -66,8 +66,8 @@ def create_ui(app):
             .addClass("main-splitter")
         )
         .addClass("main")
-        .on("change", run_ai)
-        .on("focusin", run_ai)
+        .on("change", ltk.proxy(run_ai))
+        .on("focusin", ltk.proxy(run_ai))
     )
 
     for item in model.TodoModel.load():
@@ -80,3 +80,5 @@ def create_ui(app):
 
 
 create_ui(TodoApp())
+
+ltk.window.development_location = "C:/Users/laffr/dev/todo/src"

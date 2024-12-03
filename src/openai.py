@@ -62,7 +62,7 @@ def _suggest_with_openai(prompt, suggestion_handler, image_handler):
     def handle_image(response):
         url = response["data"][0]["url"]
         storage.setItem(f"openai-image-{prompt}", url)
-        image_handler(url)
+        ltk.proxy(image_handler(url))
 
     call_openai(
         # https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/dall-e?tabs=dalle3
@@ -74,7 +74,7 @@ def _suggest_with_openai(prompt, suggestion_handler, image_handler):
             "quality": "standard",
             "n": 1,
         },
-        handle_image
+        ltk.proxy(handle_image)
     )
 
 
