@@ -28,14 +28,30 @@ def _load_from_cache(prompt, suggestion_handler, image_handler):
     return True
 
 
-def _get_open_ai_key():
+def get_open_ai_key():
+    """ get Open AI key from local storage """
+    if ltk.find("#openai-key").length:
+        return
+
     key = storage.getItem("OPENAI_API_KEY")
+    key_input = ltk.Input("")
+
+    def handle_key(_event):
+        storage.setItem("OPENAI_API_KEY", key_input.val())
+
     if not key or key == "null":
-        storage.setItem(
-            "OPENAI_API_KEY",
-            ltk.window.prompt(OPENAI_KEY_MESSAGE)
-        )
-    return storage.getItem("OPENAI_API_KEY")
+        ltk.VBox(
+            ltk.Text(OPENAI_KEY_MESSAGE)
+                .width("95%"),
+            key_input
+                .attr("type", "password")
+                .attr("id", "openai-key")
+                .width("95%")
+                .on("change", ltk.proxy(handle_key))
+        ).dialog().dialog("option", "modal", True)
+        return storage.getItem("OPENAI_API_KEY")
+    
+    return key
 
 
 def _suggest_with_openai(prompt, suggestion_handler, image_handler):
@@ -89,7 +105,7 @@ def call_openai(endpoint, request, handler):
         "json",
         {
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {_get_open_ai_key()}",
+            "Authorization": f"Bearer {get_open_ai_key()}",
         },
     )
 
