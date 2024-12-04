@@ -3,14 +3,14 @@ The view for todo items.
 """
 
 import ltk
-from todo import model
+import todo.model
 
 class TodoView(ltk.HBox):
     """ A reactive todo item view. """
 
     classes = ["ltk-hbox", "todo"]
 
-    def __init__(self, item: model.TodoModel):
+    def __init__(self, item: todo.model.TodoModel):
         @ltk.callback
         def remove(_event):
             self.remove()
@@ -25,7 +25,7 @@ class TodoView(ltk.HBox):
         )
 
 
-def create(item: model.TodoModel, focus=False):
+def create(item: todo.model.TodoModel, focus=False):
     """ Create a new todo item. """
     view = TodoView(item).appendTo(ltk.find(".todos"))
     if focus:

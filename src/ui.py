@@ -4,8 +4,8 @@ The UI for our Todo app
 
 import ltk # see https://github.com/pyscript/ltk
 
-from todo import model
-from todo import view
+import todo.model
+import todo.view
 
 import openai
 
@@ -22,7 +22,7 @@ def create_ui(app):
         app.summary = f"{ltk.find('.todo').length} Todo Tasks:"
 
     def create_todo(_):
-        view.create(model.TodoModel(), focus=True)
+        todo.view.create(todo.model.TodoModel(), focus=True)
         update_summary()
 
     def suggest(suggestion):
@@ -46,7 +46,8 @@ def create_ui(app):
     ltk.find("body").append(
         ltk.VBox(
             ltk.HBox(
-                ltk.Button("New 󠁜 ✔", create_todo),
+                ltk.Button("New 󠁜 ✔", create_todo)
+                    .attr("id", "new-button"),
                 ltk.Text(app.summary)
             ),
             ltk.HorizontalSplitPane(
@@ -70,9 +71,9 @@ def create_ui(app):
         .on("focusin", ltk.proxy(run_ai))
     )
 
-    for item in model.TodoModel.load():
+    for item in todo.model.TodoModel.load():
         if item.note:
-            view.create(item)
+            todo.view.create(item)
 
     get_suggestion_and_image(ltk.find(".ltk-model-todomodel-note"))
 
@@ -80,5 +81,7 @@ def create_ui(app):
 
 
 create_ui(TodoApp())
+
+openai.get_open_ai_key()
 
 ltk.window.development_location = "C:/Users/laffr/dev/todo/src"
