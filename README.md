@@ -4,6 +4,10 @@
 
 Watch the todo app on [GitHub Pages at laffra.github.io/todo/](https://laffra.github.io/todo/).
 
+## Online Version
+
+You can also run and edit a copy of this project at [pyscript.com](https://pyscript.com/@laffra/todo-app).
+
 ## Main Features
 
 - Persistence of to-do items in `window.localStorage`, using `ltk.LocalStorageModel`
